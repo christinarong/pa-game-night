@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+
+import gameMappings from "./Games.json";
 import GameCard from './GameCard';
 
-export default class Grid extends Component {
+export default class SelectionPage extends Component {
   constructor(props) {
     super(props);
 
@@ -10,7 +13,7 @@ export default class Grid extends Component {
 
   componentWillMount() {
     const gameList = [
-      { name: 'Scrabble', boxArtFile: 'scrabble.jpg', estimatedTime: '1 hour', numPlayers: '2-4', rulesComplexity: 'easy', type: 'word', description: 'fun word game', peopleInterested: [] }
+      { name: 'Scrabble', boxArtFile: 'scrabble.jpg', estimatedTime: '1 hour', numPlayers: '2-4', rulesComplexity: 'easy', type: 'word', description: 'fun word game', peopleInterested: [], selected: false }
     ];
 
     this.setState({ gameList });
@@ -22,6 +25,7 @@ export default class Grid extends Component {
         {this.state.gameList.map(game => {
           return (
             <GameCard
+              selected={game.selected}
               name={game.name}
               boxArtFile={game.boxArtFile}
               estimatedTime={game.estimatedTime}
@@ -36,5 +40,4 @@ export default class Grid extends Component {
       </div>
     )
   }
-
 }

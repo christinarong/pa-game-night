@@ -1,0 +1,29 @@
+html, body, #root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+.landingPage {
+  text-align: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.cardImage {
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cardImage .selectCheckbox {
+  background-color: white;
+}
+
+.cardImage .selectCheckbox:hover {
+  background-color: white;
+}
