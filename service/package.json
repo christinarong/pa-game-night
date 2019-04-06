@@ -1,0 +1,16 @@
+{
+  "name": "game-night",
+  "version": "1.0.0",
+  "description": "service for storing player information for player game night",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "author": "Kevin Zhang, Jean Zhang, Christina Rong",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash": "^4.17.11"
+  }
+}

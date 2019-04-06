@@ -1,0 +1,11 @@
+{
+  "scrabble" : {
+    "name": "Scrabble",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game"
+  }
+}
