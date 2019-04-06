@@ -5,10 +5,10 @@ import { Column, Row } from "simple-flexbox";
 export default class LandingPage extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       text: ""
-    }
+    };
   }
 
   render() {
@@ -18,8 +18,16 @@ export default class LandingPage extends Component {
         <div className={"header"}>Welcome to PA Game Night</div>
         <Row className={"content"}>
           <div style={{ flex: 1 }} />
-          <TextField onChange={(event) => this.onTextFieldChanged(event.target.value)} />
-          <Button onClick={() => this.props.onSubmit(this.state.text)}>Submit</Button>
+          <TextField
+            required
+            onChange={event => this.onTextFieldChanged(event.target.value)}
+            value={this.state.text}
+            placeholder="Full Name"
+            label="Full Name"
+          />
+          <Button onClick={() => this.props.onSubmit(this.state.text)}>
+            Submit
+          </Button>
           <div style={{ flex: 1 }} />
         </Row>
         <div style={{ flex: 1 }} />
@@ -28,6 +36,6 @@ export default class LandingPage extends Component {
   }
 
   onTextFieldChanged(value) {
-    this.setState({text: value})
+    this.setState({ text: value });
   }
 }

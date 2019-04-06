@@ -1,43 +1,45 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { Component } from "react";
+import _ from "lodash";
+import axios from "axios";
 
-import gameMappings from "./Games.json";
-import GameCard from './GameCard';
+import GameCard from "./GameCard";
 
 export default class SelectionPage extends Component {
   constructor(props) {
     super(props);
 
-    this.setState({ gameList: [] });
+    this.state = { gameMappings: {}, userSelections: [] };
   }
 
-  componentWillMount() {
-    const gameList = [
-      { name: 'Scrabble', boxArtFile: 'scrabble.jpg', estimatedTime: '1 hour', numPlayers: '2-4', rulesComplexity: 'easy', type: 'word', description: 'fun word game', peopleInterested: [], selected: false }
-    ];
-
-    this.setState({ gameList });
+  async componentWillMount() {
+    const gameMappings = (await axios.get("/games")).data;
+    this.setState({ gameMappings });
   }
 
   render() {
     return (
       <div className="grid-container">
-        {this.state.gameList.map(game => {
+        {_.map(this.state.gameMappings, game => {
           return (
             <GameCard
-              selected={game.selected}
-              name={game.name}
-              boxArtFile={game.boxArtFile}
-              estimatedTime={game.estimatedTime}
-              numPlayers={game.numPlayers}
-              rulesComplexity={game.rulesComplexity}
-              type={game.type}
-              description={game.description}
-              numInterested={game.peopleInterested.length}
+              key={game.name}
+              selected={this.state.userSelections.indexOf(game.name) !== -1}
+              onSelect={value => this.onGameSelected(game.name, value)}
+              cardInfo={game}
             />
-          )
+          );
         })}
       </div>
-    )
+    );
+  }
+
+  onGameSelected(gameName, selected) {
+    let { userSelections } = this.state;
+    if (selected) {
+      userSelections.push(gameName);
+    } else {
+      _.pull(userSelections, gameName);
+    }
+    this.setState({ userSelections });
   }
 }
