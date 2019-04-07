@@ -9,12 +9,9 @@ export default class SelectionPage extends React.Component {
     this.state = { userSelections: [] };
   }
 
-  onGameSelected(gameName, isSelected) {
-    if (isSelected) {
-      this.state.userSelections.push(gameName);
-    } else {
-      _.pull(this.state.userSelections, gameName);
-    }
+  onGameSelected(gameKey, isSelected) {
+    if (isSelected) this.state.userSelections.push(gameKey);
+    else _.pull(this.state.userSelections, gameKey);
     this.setState({ userSelections: this.state.userSelections });
     this.props.userSelectionsChanged(this.state.userSelections);
   }
@@ -22,13 +19,13 @@ export default class SelectionPage extends React.Component {
   render() {
     return (
       <div className="grid-container">
-        {_.map(this.props.gameMappings, (game, index) => {
+        {this.props.gameMappings.map((gameInfo, gameKey) => {
           return (
             <GameCard
-              key={index}
-              selected={this.state.userSelections.indexOf(game.name) !== -1}
-              onSelect={isSelected => this.onGameSelected(game.name, isSelected)}
-              cardInfo={game}
+              key={gameKey}
+              selected={this.state.userSelections.indexOf(gameKey) !== -1}
+              onSelect={isSelected => this.onGameSelected(gameKey, isSelected)}
+              cardInfo={gameInfo}
             />
           );
         })}

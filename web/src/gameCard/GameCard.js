@@ -34,7 +34,7 @@ export default function GameCard(props) {
               <strong>description:</strong> {cardInfo.description}
             </Typography>
             <Typography component="p">
-              <strong># people interested:</strong> {cardInfo.numInterested}
+              <strong># people interested:</strong> {cardInfo.interestedPlayers.length}
             </Typography>
           </CardContent>
         </CardActionArea>

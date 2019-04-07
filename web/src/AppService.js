@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import LoginPage from './pages/LoginPage';
 import SelectionPage from './pages/SelectionPage';
 import RankingPage from './pages/RankingPage';
@@ -8,7 +9,8 @@ export default {
   goToPrevStep,
   goToNextStep,
   moveForward,
-  moveBackward
+  moveBackward,
+  submitSelections
 }
 
 function getStepperContent() {
@@ -19,6 +21,7 @@ function getStepperContent() {
     case 1: return <SelectionPage gameMappings={this.state.gameMappings} userSelectionsChanged={userSelectionsChanged}/>;
     case 2: return <RankingPage gameMappings={this.state.gameMappings} userSelections={this.state.userSelections}/>;
     case 3: return <div>Successfully Submitted!</div>;
+    default: break;
   }
 }
 
@@ -61,8 +64,19 @@ function moveForward() {
       else this.setState({ errorMessage: 'Must select at least one game!'});
       break;
     }
-    case 2: this.goToNextStep();
-    case 3: this.goToNextStep();
+    case 2: {
+      // this.submitSelections();
+      this.goToNextStep();
+      break;
+    }
+    case 3: break;
     default: break;
   }
+}
+
+function submitSelections() {
+  this.state.userSelections.forEach(gameIndex => {
+    this.state.gameMappings[gameIndex].interestedPlayers.push(this.state.userName);
+  })
+  // axios.post('/games', this.state.gameMappings);
 }

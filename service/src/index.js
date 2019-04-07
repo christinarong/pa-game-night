@@ -4,7 +4,10 @@ const port = 3001;
 const _ = require('lodash');
 
 var gameMappings = require("./static/Games.json");
-gameMappings = _.mapValues(gameMappings, game => ({...game, interestedPlayers: []}));
+gameMappings = gameMappings.gameList.map(gameInfo => {
+  gameInfo['interestedPlayers'] = [];
+  return gameInfo;
+});
 
 app.get('/games', (req, res) => {
   res.send(gameMappings);

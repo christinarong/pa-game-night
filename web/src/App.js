@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      gameMappings: {},
+      gameMappings: [],
       activeStep: 0,
       errorMessage: null,
       userName: null,
@@ -40,6 +40,7 @@ export default class App extends React.Component {
         </Stepper>
         {this.getStepperContent()}
         <div className="stepperControls">
+          <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
           <Button
             className="stepperButton"
             variant="contained"
@@ -58,7 +59,6 @@ export default class App extends React.Component {
           >
             NEXT
           </Button>
-          <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
         </div>
       </div>
     )
