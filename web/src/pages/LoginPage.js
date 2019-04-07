@@ -11,6 +11,7 @@ export default class LoginPage extends Component {
       <div className="landing-page-container">
         <div>Please provide your full name!</div>
         <TextField
+          className="nameField"
           required
           margin="normal"
           variant="outlined"

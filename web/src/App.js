@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Step, Stepper, StepLabel } from '@material-ui/core';
-import AppService from './AppService';
+import { Button } from '@material-ui/core';
+import ParticipantApp from './ParticipantApp';
+import OrganizerApp from './OrganizerApp';
 import './App.css';
 
 export default class App extends React.Component {
@@ -10,14 +11,8 @@ export default class App extends React.Component {
 
     this.state = {
       gameMappings: [],
-      activeStep: 0,
-      errorMessage: null,
-      userName: null,
-      userSelections: []
+      loginAsOrganizer: false
     };
-    this.steps = ['Login', 'Browse Games', 'Rank Interest', 'Submit'];
-
-    for (let func in AppService) this[func] = AppService[func].bind(this);
   }
 
   async componentWillMount() {
@@ -29,39 +24,16 @@ export default class App extends React.Component {
     return (
       <div className="app-container">
         <div className="app-header">
-          <h3>{`Welcome to PA Game Night!`}</h3>
+          <h3>Welcome to PA Game Night!</h3>
         </div>
-        <Stepper activeStep={this.state.activeStep} alternativeLabel>
-          {this.steps.map(label => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {this.getStepperContent()}
-        <div className="stepperControls">
-          <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
-          <Button
-            className="stepperButton"
-            variant="contained"
-            color="primary"
-            disabled={this.state.activeStep === 0}
-            onClick={this.moveBackward}
-          >
-            PREV
-          </Button>
-          <Button
-            className="stepperButton"
-            variant="contained"
-            color="primary"
-            disabled={this.state.activeStep === this.steps.length - 1}
-            onClick={this.moveForward}
-          >
-            NEXT
-          </Button>
-        </div>
+        {this.state.loginAsOrganizer
+          ? <OrganizerApp gameMappings={this.state.gameMappings}/>
+          : <ParticipantApp gameMappings={this.state.gameMappings}/>
+        }
+        <Button color="primary" onClick={() => this.setState({ loginAsOrganizer: !this.state.loginAsOrganizer })}>
+          {this.state.loginAsOrganizer ? 'LOGIN AS PARTICIPANT' : 'LOGIN AS ORGANIZER'}
+        </Button>
       </div>
     )
-
   }
 }

@@ -22,12 +22,12 @@ function getStepperContent() {
   const userSelectionsChanged = userSelections => this.setState({ userSelections });
   switch(this.state.activeStep) {
     case 0: return <LoginPage userNameChanged={userNameChanged}/>;
-    case 1: return <SelectionPage gameMappings={this.state.gameMappings} userSelectionsChanged={userSelectionsChanged}/>;
-    case 2: return <RankingPage gameMappings={this.state.gameMappings} userSelections={this.state.userSelections}/>;
+    case 1: return <SelectionPage gameMappings={this.props.gameMappings} userSelectionsChanged={userSelectionsChanged}/>;
+    case 2: return <RankingPage gameMappings={this.props.gameMappings} userSelections={this.state.userSelections}/>;
     case 3: return (
       <div className="submission-page-container">
         <p>Successfully Submitted!</p>
-        <ResultsPage gameMappings={this.state.gameMappings}/>
+        <ResultsPage gameMappings={this.props.gameMappings}/>
       </div>
     )
     default: break;
@@ -86,9 +86,9 @@ function moveForward() {
 
 function updateInterestedPlayers() {
   this.state.userSelections.forEach(gameIndex => {
-    this.state.gameMappings[gameIndex].interestedPlayers.push(this.state.userName);
+    this.props.gameMappings[gameIndex].interestedPlayers.push(this.state.userName);
   })
-  this.setState({ gameMappings: this.state.gameMappings });
+  this.setState({ gameMappings: this.props.gameMappings });
 }
 
 function submitSelections() {

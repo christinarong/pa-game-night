@@ -7,14 +7,22 @@ html, body, #root {
   margin: 20px;
 }
 
-.app-container > .stepperControls {
-  box-sizing: border-box;
+.app-container .stepper-controls {
   margin: 10px;
 }
 
-.app-container > .stepperControls > .stepperButton {
-  box-sizing: border-box;
+.app-container .stepper-controls > .stepper-button {
   margin: 10px;
+}
+
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-page-container > .nameField {
+  width: 300px;
 }
 
 .grid-container {
@@ -42,4 +50,8 @@ html, body, #root {
 
 .game-card-container .cardImage .selectCheckbox:hover {
   background-color: white;
+}
+
+.results-page-container {
+  margin: 10px;
 }
