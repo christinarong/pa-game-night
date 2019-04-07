@@ -3,13 +3,17 @@ import axios from 'axios';
 import LoginPage from './pages/LoginPage';
 import SelectionPage from './pages/SelectionPage';
 import RankingPage from './pages/RankingPage';
+import ResultsPage from './pages/ResultsPage';
 
 export default {
   getStepperContent,
+
   goToPrevStep,
   goToNextStep,
   moveForward,
   moveBackward,
+  
+  updateInterestedPlayers,
   submitSelections
 }
 
@@ -20,7 +24,12 @@ function getStepperContent() {
     case 0: return <LoginPage userNameChanged={userNameChanged}/>;
     case 1: return <SelectionPage gameMappings={this.state.gameMappings} userSelectionsChanged={userSelectionsChanged}/>;
     case 2: return <RankingPage gameMappings={this.state.gameMappings} userSelections={this.state.userSelections}/>;
-    case 3: return <div>Successfully Submitted!</div>;
+    case 3: return (
+      <div className="submission-page-container">
+        <p>Successfully Submitted!</p>
+        <ResultsPage gameMappings={this.state.gameMappings}/>
+      </div>
+    )
     default: break;
   }
 }
@@ -65,6 +74,7 @@ function moveForward() {
       break;
     }
     case 2: {
+      this.updateInterestedPlayers();
       // this.submitSelections();
       this.goToNextStep();
       break;
@@ -74,9 +84,13 @@ function moveForward() {
   }
 }
 
-function submitSelections() {
+function updateInterestedPlayers() {
   this.state.userSelections.forEach(gameIndex => {
     this.state.gameMappings[gameIndex].interestedPlayers.push(this.state.userName);
   })
+  this.setState({ gameMappings: this.state.gameMappings });
+}
+
+function submitSelections() {
   // axios.post('/games', this.state.gameMappings);
 }
