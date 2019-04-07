@@ -1,6 +1,51 @@
 {
-  "scrabble" : {
-    "name": "Scrabble",
+  "scrabble1" : {
+    "name": "Scrabble1",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game"
+  },
+  "scrabble2" : {
+    "name": "Scrabble2",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game fun word game fun word game fun word game fun word game fun word game fun word game fun word gamefun word game fun word game fun word game fun word game"
+  },
+  "scrabble3" : {
+    "name": "Scrabble3",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game"
+  },
+  "scrabble4" : {
+    "name": "Scrabble4",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game"
+  },
+  "scrabble5" : {
+    "name": "Scrabble5",
+    "boxArtFile": "scrabble.jpg", 
+    "estimatedTime": "1 hour", 
+    "numPlayers": "2-4", 
+    "rulesComplexity": "easy", 
+    "type": "word", 
+    "description": "fun word game"
+  },
+  "scrabble6" : {
+    "name": "Scrabble6",
     "boxArtFile": "scrabble.jpg", 
     "estimatedTime": "1 hour", 
     "numPlayers": "2-4", 

@@ -1,27 +1,67 @@
-import React, { Component } from "react";
+import React from 'react';
+import axios from 'axios';
+import { Button, Step, Stepper, StepLabel } from '@material-ui/core';
+import AppService from './AppService';
+import './App.css';
 
-import SelectionPage from "./SelectionPage";
-import LandingPage from "./LandingPage";
-import "./App.css";
-
-export default class App extends Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null
+      gameMappings: {},
+      activeStep: 0,
+      errorMessage: null,
+      userName: null,
+      userSelections: []
     };
+    this.steps = ['Login', 'Browse Games', 'Rank Interest', 'Submit'];
+
+    for (let func in AppService) this[func] = AppService[func].bind(this);
+  }
+
+  async componentWillMount() {
+    const gameMappings = (await axios.get("/games")).data;
+    this.setState({ gameMappings });
   }
 
   render() {
-    if (this.state.user) {
-      return (
-        <div>
-          <SelectionPage user={this.state.user} />
+    return (
+      <div className="app-container">
+        <div className="app-header">
+          <h3>{`Welcome to PA Game Night!`}</h3>
         </div>
-      );
-    } else {
-      return <LandingPage onSubmit={user => this.setState({ user })} />;
-    }
+        <Stepper activeStep={this.state.activeStep} alternativeLabel>
+          {this.steps.map(label => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        {this.getStepperContent()}
+        <div className="stepperControls">
+          <Button
+            className="stepperButton"
+            variant="contained"
+            color="primary"
+            disabled={this.state.activeStep === 0}
+            onClick={this.moveBackward}
+          >
+            PREV
+          </Button>
+          <Button
+            className="stepperButton"
+            variant="contained"
+            color="primary"
+            disabled={this.state.activeStep === this.steps.length - 1}
+            onClick={this.moveForward}
+          >
+            NEXT
+          </Button>
+          <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
+        </div>
+      </div>
+    )
+
   }
 }
