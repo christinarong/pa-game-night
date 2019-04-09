@@ -10,10 +10,7 @@ export default {
   goToPrevStep,
   goToNextStep,
   moveForward,
-  moveBackward,
-  
-  updateInterestedPlayers,
-  submitSelections
+  moveBackward
 }
 
 function getStepperContent() {
@@ -67,7 +64,7 @@ function moveForward() {
     }
     case 1: {
       if (this.state.userSelections.length > 0) {
-        this.updateInterestedPlayers();
+        this.props.updateGameMappings(this.state.userSelections, this.state.userName);
         this.goToNextStep();
       }
       else this.setState({ errorMessage: 'Must select at least one game!'});
@@ -76,15 +73,4 @@ function moveForward() {
     case 2: break;
     default: break;
   }
-}
-
-function updateInterestedPlayers() {
-  this.state.userSelections.forEach(gameIndex => {
-    this.props.gameMappings[gameIndex].interestedPlayers.push(this.state.userName);
-  })
-  this.setState({ gameMappings: this.props.gameMappings });
-}
-
-function submitSelections() {
-  // axios.post('/games', this.state.gameMappings);
 }

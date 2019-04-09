@@ -1,10 +1,14 @@
 const express = require('express');
-const app = express();
-const port = 3001;
+const bodyParser = require('body-parser');
 const _ = require('lodash');
 
-var gameMappings = require("./static/Games.json");
-gameMappings = gameMappings.gameList.map(gameInfo => {
+const app = express();
+const port = 3001;
+
+app.use(bodyParser.json());
+
+global.gameMappings = require("./static/Games.json");
+global.gameMappings = global.gameMappings.gameList.map(gameInfo => {
   gameInfo['interestedPlayers'] = [];
   return gameInfo;
 });
@@ -14,9 +18,9 @@ app.get('/games', (req, res) => {
 })
 
 app.post('/games', (req, res) => {
-  let { body: {gameMappings} } = req;
-  gameMappings = gameMappings;
-  res.send("okay");
+  const { mappings } = req.body
+  global.gameMappings = mappings;
+  res.send(gameMappings);
 })
 
 app.listen(port);

@@ -8,7 +8,6 @@ export default class ParticipantApp extends React.Component {
     super(props);
 
     this.state = {
-      gameMappings: this.props.gameMappings,
       activeStep: 0,
       errorMessage: null,
       userName: null,
