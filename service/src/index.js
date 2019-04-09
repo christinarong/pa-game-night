@@ -14,8 +14,8 @@ app.get('/games', (req, res) => {
 })
 
 app.post('/games', (req, res) => {
-  let { body: {gameMappings} } = req;
-  gameMappings = gameMappings;
+  let { mappings } = req;
+  gameMappings = mappings;
   res.send("okay");
 })
 
