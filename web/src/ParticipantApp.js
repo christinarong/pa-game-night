@@ -14,7 +14,7 @@ export default class ParticipantApp extends React.Component {
       userName: null,
       userSelections: []
     };
-    this.steps = ['Login', 'Browse Games', 'Rank Interest', 'Submit'];
+    this.steps = ['Login', 'Browse Games', 'Submit'];
 
     for (let func in ParticipantAppService) this[func] = ParticipantAppService[func].bind(this);
   }
