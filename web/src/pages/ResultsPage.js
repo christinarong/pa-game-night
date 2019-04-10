@@ -4,11 +4,9 @@ import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@materi
 export default class ResultsPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.rowsToDisplay = this.generateRows();
   }
 
-  generateRows() {
+  generateRows(props) {
     let rows = [];
     this.props.gameMappings.gameList.forEach((gameInfo, gameKey) => {
       const playersList = gameInfo.interestedPlayers.join(', ');
@@ -24,6 +22,7 @@ export default class ResultsPage extends React.Component {
   }
 
   render() {
+    const rowsToDisplay = this.generateRows();
     return (
       <div className="results-page-container">
         <Paper>
@@ -35,7 +34,7 @@ export default class ResultsPage extends React.Component {
               <TableCell>List of People Interested</TableCell>
             </TableHead>
             <TableBody>
-              {this.rowsToDisplay.map(row => (
+              {rowsToDisplay.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">{row.gameName}</TableCell>
                   <TableCell>{row.playersAllowed}</TableCell>

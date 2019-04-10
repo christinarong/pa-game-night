@@ -11,7 +11,9 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      gameMappings: {},
+      gameMappings: {
+        gameList: []
+      },
       loginAsOrganizer: false
     };
   }
@@ -37,6 +39,11 @@ export default class App extends React.Component {
     _.pull(this.state.gameMappings.userList, userName);
     this.setState({ gameMappings: this.state.gameMappings });
     await axios.post("/games", { mappings: this.state.gameMappings });
+  }
+
+  async addGame() {
+    // TODO
+    return;
   }
 
   render() {
