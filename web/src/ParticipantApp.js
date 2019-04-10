@@ -12,7 +12,7 @@ export default class ParticipantApp extends React.Component {
       activeStep: 0,
       errorMessage: null,
       userName: null,
-      userSelections: []
+      userSelections: new Map()
     };
     this.steps = ['Login', 'Browse Games', 'Submit'];
 
@@ -57,14 +57,17 @@ export default class ParticipantApp extends React.Component {
 
   renderSelectionPage() {
     const checkSelections = () => {
-      if (this.state.userSelections.length > 0) {
+      const userRankings = Array.from(this.state.userSelections.values());
+      if ((userRankings.length === 1 && userRankings.includes(1))
+        || (userRankings.length === 2 && userRankings.includes(1) && userRankings.includes(2))
+        || (userRankings.length === 3 && userRankings.includes(1) && userRankings.includes(2) && userRankings.includes(3))) {
         this.submitInfo();
         this.goToNextStep();
       }
-      else this.setState({ errorMessage: 'Must select at least one game!'});
+      else this.setState({ errorMessage: 'Must select at least one game and rankings must start from 1.'});
     };
     
-    const resetFields = () => this.setState({ userName: null, userSelections: [] });
+    const resetFields = () => this.setState({ userName: null, userSelections: new Map() });
 
     return (
       <div className="selection-page-container">
@@ -73,8 +76,7 @@ export default class ParticipantApp extends React.Component {
             return (
               <GameCard
                 key={gameKey}
-                selected={this.state.userSelections.indexOf(gameKey) !== -1}
-                onSelect={isSelected => this.onGameSelected(gameKey, isSelected)}
+                onSelect={gameRanking => this.onGameSelected(gameKey, gameRanking)}
                 cardInfo={gameInfo}
               />
             );
