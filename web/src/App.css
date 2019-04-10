@@ -61,11 +61,6 @@ html, body, #root {
   height: 100%;
 }
 
-.organizer-content .edit-userList,
-.organizer-content .edit-gameList {
-  width: calc(50% - 16px);
-  height: 400px;
-  float: left;
-  overflow: auto;
-  margin: 8px;
+.organizer-content .edit-controls {
+  justify-content: center;
 }
