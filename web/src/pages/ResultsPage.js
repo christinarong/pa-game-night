@@ -10,7 +10,7 @@ export default class ResultsPage extends React.Component {
 
   generateRows() {
     let rows = [];
-    this.props.gameMappings.forEach((gameInfo, gameKey) => {
+    this.props.gameMappings.gameList.forEach((gameInfo, gameKey) => {
       const playersList = gameInfo.interestedPlayers.join(', ');
       rows.push({
         id: gameKey,

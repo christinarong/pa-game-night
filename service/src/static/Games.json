@@ -47,5 +47,6 @@
     "rulesComplexity": "easy", 
     "type": "word", 
     "description": "fun word game"
-  }]
+  }],
+  "userList": []
 }

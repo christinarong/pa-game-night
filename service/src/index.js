@@ -8,9 +8,8 @@ const port = 3001;
 app.use(bodyParser.json());
 
 global.gameMappings = require("./static/Games.json");
-global.gameMappings = global.gameMappings.gameList.map(gameInfo => {
+global.gameMappings.gameList.forEach(gameInfo => {
   gameInfo['interestedPlayers'] = [];
-  return gameInfo;
 });
 
 app.get('/games', (req, res) => {
@@ -18,7 +17,7 @@ app.get('/games', (req, res) => {
 })
 
 app.post('/games', (req, res) => {
-  const { mappings } = req.body
+  const { mappings } = req.body;
   global.gameMappings = mappings;
   res.send(gameMappings);
 })

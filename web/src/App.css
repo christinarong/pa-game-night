@@ -55,3 +55,17 @@ html, body, #root {
 .results-page-container {
   margin: 10px;
 }
+
+.organizer-content {
+  width: 100%;
+  height: 100%;
+}
+
+.organizer-content .edit-userList,
+.organizer-content .edit-gameList {
+  width: calc(50% - 16px);
+  height: 400px;
+  float: left;
+  overflow: auto;
+  margin: 8px;
+}

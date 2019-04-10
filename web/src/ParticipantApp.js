@@ -69,7 +69,7 @@ export default class ParticipantApp extends React.Component {
     return (
       <div className="selection-page-container">
         <div className="grid-container">
-          {this.props.gameMappings.map((gameInfo, gameKey) => {
+          {this.props.gameMappings.gameList.map((gameInfo, gameKey) => {
             return (
               <GameCard
                 key={gameKey}
