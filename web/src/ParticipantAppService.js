@@ -30,10 +30,9 @@ function goToNextStep() {
   this.setState({ activeStep: this.state.activeStep + 1 });
 }
 
-
-function onGameSelected(gameKey, isSelected) {
-  if (isSelected) this.state.userSelections.push(gameKey);
-  else _.pull(this.state.userSelections, gameKey);
+function onGameSelected(gameKey, gameRank) {
+  if (gameRank !== 0) this.state.userSelections.set(gameKey, gameRank);
+  else this.state.userSelections.delete(gameKey);
   this.setState({ userSelections: this.state.userSelections });
 }
 
@@ -42,7 +41,7 @@ function restartApp() {
     activeStep: 0,
     errorMessage: null,
     userName: null,
-    userSelections: []
+    userSelections: new Map()
   })
 }
 
