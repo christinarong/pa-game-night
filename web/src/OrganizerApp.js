@@ -28,7 +28,7 @@ export default class OrganizerApp extends React.Component {
   render() {
     return (
       <div className="organizer-content">
-        <ResultsPage gameMappings={this.props.gameMappings} />
+        <ResultsPage deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)} gameMappings={this.props.gameMappings} />
         <div className="edit-controls">
           <Button onClick={() => this.setState({ openDialog: "editUsers" })}>Edit Users</Button>
           <Button onClick={() => this.setState({ openDialog: "addGames" })}>Add Games</Button>

@@ -89,7 +89,7 @@ export default class ParticipantApp extends React.Component {
     return (
       <div className="submission-page-container">
         <p>Successfully Submitted!</p>
-        <ResultsPage gameMappings={this.props.gameMappings}/>
+        <ResultsPage deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)} gameMappings={this.props.gameMappings}/>
         <Button className="button" variant="contained" color="primary" onClick={this.restartApp}>
           RESTART
         </Button>
