@@ -45,7 +45,7 @@ export default class GameCard extends React.Component {
               <strong>Year:</strong> {this.props.cardInfo.year || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong>BoardGameGeek.com Ranking:</strong> {this.props.cardInfo.bbgRank || 'N/A'}
+              <strong>BoardGameGeek.com Ranking:</strong> {this.props.cardInfo.bggRank || 'N/A'}
             </Typography>
             <Typography component="p">
               <strong>Description:</strong> {this.props.cardInfo.description || 'N/A'}

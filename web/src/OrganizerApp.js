@@ -11,14 +11,6 @@ export default class OrganizerApp extends React.Component {
     this.state = { openDialog: undefined };
   }
 
-  onEditUsersButtonClick() {
-    this.setState({ openDialog: "editUsers" });
-  }
-
-  onAddGamesButtonClick() {
-    this.setState({ openDialog: "addGames" });
-  }
-
   onDialogClose() {
     this.setState({ openDialog: undefined });
   }
@@ -26,20 +18,24 @@ export default class OrganizerApp extends React.Component {
   render() {
     return (
       <div className="organizer-content">
-        <ResultsPage deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)} gameMappings={this.props.gameMappings} />
+        <ResultsPage
+          gameMappings={this.props.gameMappings}
+          loginAsOrganizer={true}
+          deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)}
+        />
         <div className="edit-controls">
           <Button onClick={() => this.setState({ openDialog: "editUsers" })}>Edit Users</Button>
           <Button onClick={() => this.setState({ openDialog: "addGames" })}>Add Games</Button>
           <EditUsersDialog
-            userList={this.props.gameMappings.userList}
             onClose={() => this.onDialogClose()}
-            onDeleteUser={userName => this.props.removeUser(userName)}
             open={this.state.openDialog == "editUsers"}
+            onDeleteUser={userName => this.props.removeUser(userName)}
+            userList={this.props.gameMappings.userList}
           />
           <AddGamesDialog
             onClose={() => this.onDialogClose()}
-            onAddGame={this.props.addGame}
             open={this.state.openDialog == "addGames"}
+            onAddGame={this.props.addGame}
           />
           <div onClose={() => this.onDialogClose} open={this.state.openDialog == "addGames"} />
         </div>

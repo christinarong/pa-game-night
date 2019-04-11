@@ -13,7 +13,7 @@ export default class AddGamesDialog extends React.Component {
         type: '',
         description: '',
         year: '',
-        bbgRank: '',
+        bggRank: '',
         boxArtFile: '',
         interestedPlayers: []
       }
@@ -27,11 +27,11 @@ export default class AddGamesDialog extends React.Component {
 
   render() {
     return (
-      <Dialog fullWidth={true} maxWidth={"sm"} open={this.props.open} onClose={this.props.onClose}>
+      <Dialog className="dialog" fullWidth={true} maxWidth={"sm"} open={this.props.open} onClose={this.props.onClose}>
         <DialogTitle>Add Game</DialogTitle>
         <DialogContent className="edit-gameList">
           <TextField required className="input-field" margin="normal" variant="outlined"
-            label="name"
+            label="Name"
             value={this.state.formInput.name}
             onChange={event => {
               this.state.formInput.name = event.target.value;
@@ -39,7 +39,7 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="estimated play time"
+            label="Estimated Play Time"
             value={this.state.formInput.estimatedTime}
             onChange={event => {
               this.state.formInput.estimatedTime = event.target.value;
@@ -47,7 +47,7 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="# of players allotted"
+            label="# of Players Allotted"
             value={this.state.formInput.numPlayers}
             onChange={event => {
               this.state.formInput.numPlayers = event.target.value;
@@ -55,7 +55,7 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="rules complexity"
+            label="Rules Complexity"
             value={this.state.formInput.rulesComplexity}
             onChange={event => {
               this.state.formInput.rulesComplexity = event.target.value;
@@ -63,7 +63,7 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="game type"
+            label="Game Type"
             value={this.state.formInput.type}
             onChange={event => {
               this.state.formInput.type = event.target.value;
@@ -71,7 +71,7 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="year"
+            label="Year"
             value={this.state.formInput.year}
             onChange={event => {
               this.state.formInput.year = event.target.value;
@@ -79,22 +79,22 @@ export default class AddGamesDialog extends React.Component {
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined"
-            label="bbgRank"
-            value={this.state.formInput.bbgRank}
+            label="BoardGameGeek.com Ranking"
+            value={this.state.formInput.bggRank}
             onChange={event => {
-              this.state.formInput.bbgRank = event.target.value;
+              this.state.formInput.bggRank = event.target.value;
               this.setState({ formInput: this.state.formInput });
             }}
           />
           <TextField className="input-field" margin="normal" variant="outlined" multiline={true}
-            label="description"
+            label="Description"
             value={this.state.formInput.description}
             onChange={event => {
               this.state.formInput.description = event.target.value;
               this.setState({ formInput: this.state.formInput });
             }}
           />
-          <Button variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
+          <Button className="add-game-button" variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
             ADD GAME
           </Button>
         </DialogContent>

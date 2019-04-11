@@ -60,20 +60,19 @@ export default class App extends React.Component {
         <div className="app-header">
           <h3>Welcome to PA Game Night!</h3>
         </div>
-        {this.state.loginAsOrganizer ? (
-          <OrganizerApp
-            gameMappings={this.state.gameMappings}
-            removeUser={this.removeUser.bind(this)}
-            addGame={this.addGame.bind(this)}
-            deleteUserFromGame={this.deleteUserFromGame.bind(this)}
-          />
-        ) : (
-          <ParticipantApp
-            updateGameMappings={(userSelections, userName) => this.updateGameMappings(userSelections, userName)}
-            gameMappings={this.state.gameMappings}
-            deleteUserFromGame={this.deleteUserFromGame.bind(this)}
-          />
-        )}
+        {this.state.loginAsOrganizer
+          ? <OrganizerApp
+              gameMappings={this.state.gameMappings}
+              removeUser={this.removeUser.bind(this)}
+              deleteUserFromGame={this.deleteUserFromGame.bind(this)}
+              addGame={this.addGame.bind(this)}
+            />
+          : <ParticipantApp
+              gameMappings={this.state.gameMappings}
+              updateGameMappings={(userSelections, userName) => this.updateGameMappings(userSelections, userName)}
+              deleteUserFromGame={this.deleteUserFromGame.bind(this)}
+            />
+        }
         <Button color="primary" onClick={() => this.setState({ loginAsOrganizer: !this.state.loginAsOrganizer })}>
           {this.state.loginAsOrganizer ? "LOGIN AS PARTICIPANT" : "LOGIN AS ORGANIZER"}
         </Button>
