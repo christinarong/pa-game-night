@@ -1,17 +1,6 @@
 import React from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  ListItemSecondaryAction
-} from "@material-ui/core";
+import { Dialog, DialogContent, DialogTitle, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-
-export { AddGamesDialog, EditUsersDialog };
 
 function EditUsersDialog(props) {
   return (
@@ -35,6 +24,4 @@ function EditUsersDialog(props) {
   );
 }
 
-function AddGamesDialog(props) {
-  return <div />;
-}
+export { EditUsersDialog };

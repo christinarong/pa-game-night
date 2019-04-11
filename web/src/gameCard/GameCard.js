@@ -20,32 +20,38 @@ export default class GameCard extends React.Component {
       <Card style={{ maxWidth: "300px" }}>
         <CardActionArea onClick={this.onClick.bind(this)}>
           <CardMedia
-            style={{ width: "300px", height: "200px" }}
-            image={require(`../boxArt/${this.props.cardInfo.boxArtFile}`)}
+            style={{ width: "300px", height: "300px" }}
+            image={require(`../boxArt/${this.props.cardInfo.boxArtFile || 'default.jpg'}`) || 'default.jpg'}
             gameRanking={this.state.gameRanking}
             component={GameMedia}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {this.props.cardInfo.name}
+              {this.props.cardInfo.name || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong>estimated play time:</strong> {this.props.cardInfo.estimatedTime}
+              <strong>Estimated Play Time:</strong> {this.props.cardInfo.estimatedTime || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong># of players:</strong> {this.props.cardInfo.numPlayers}
+              <strong># of Players:</strong> {this.props.cardInfo.numPlayers || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong>rules complexity:</strong> {this.props.cardInfo.rulesComplexity}
+              <strong>Rules Complexity:</strong> {this.props.cardInfo.rulesComplexity || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong>game type:</strong> {this.props.cardInfo.type}
+              <strong>Game Type:</strong> {this.props.cardInfo.type || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong>description:</strong> {this.props.cardInfo.description}
+              <strong>Year:</strong> {this.props.cardInfo.year || 'N/A'}
             </Typography>
             <Typography component="p">
-              <strong># people interested:</strong> {this.props.cardInfo.interestedPlayers.length}
+              <strong>BoardGameGeek.com Ranking:</strong> {this.props.cardInfo.bbgRank || 'N/A'}
+            </Typography>
+            <Typography component="p">
+              <strong>Description:</strong> {this.props.cardInfo.description || 'N/A'}
+            </Typography>
+            <Typography component="p">
+              <strong># of People Interested:</strong> {this.props.cardInfo.interestedPlayers.length || 0}
             </Typography>
           </CardContent>
         </CardActionArea>

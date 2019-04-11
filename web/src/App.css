@@ -64,3 +64,12 @@ html, body, #root {
 .organizer-content .edit-controls {
   justify-content: center;
 }
+
+.edit-gameList {
+  float: left;
+}
+
+.input-field {
+  width: 500px;
+  margin: 12px;
+}

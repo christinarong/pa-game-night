@@ -12,7 +12,8 @@ export default class App extends React.Component {
 
     this.state = {
       gameMappings: {
-        gameList: []
+        gameList: [],
+        userList: []
       },
       loginAsOrganizer: false
     };
@@ -47,9 +48,9 @@ export default class App extends React.Component {
     await axios.post("/games", { mappings: this.state.gameMappings });
   }
 
-  async addGame() {
-    // TODO
-    return;
+  async addGame(gameObject) {
+    this.state.gameMappings.gameList.push(gameObject);
+    await axios.post("/games", { mappings: this.state.gameMappings });
   }
 
   render() {
@@ -63,6 +64,7 @@ export default class App extends React.Component {
           <OrganizerApp
             gameMappings={this.state.gameMappings}
             removeUser={this.removeUser.bind(this)}
+            addGame={this.addGame.bind(this)}
             deleteUserFromGame={this.deleteUserFromGame.bind(this)}
           />
         ) : (

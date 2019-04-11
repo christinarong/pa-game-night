@@ -1,16 +1,14 @@
 import React from "react";
-import { IconButton, Button, List, ListItem, ListItemText, Paper, ListItemSecondaryAction } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
 import ResultsPage from "./pages/ResultsPage";
-import { EditUsersDialog } from "./Dialog";
+import AddGamesDialog from './AddGamesDialog';
+import { EditUsersDialog } from "./EditUsersDialog";
 
 export default class OrganizerApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      openDialog: undefined
-    };
+    this.state = { openDialog: undefined };
   }
 
   onEditUsersButtonClick() {
@@ -38,33 +36,14 @@ export default class OrganizerApp extends React.Component {
             onDeleteUser={userName => this.props.removeUser(userName)}
             open={this.state.openDialog == "editUsers"}
           />
+          <AddGamesDialog
+            onClose={() => this.onDialogClose()}
+            onAddGame={this.props.addGame}
+            open={this.state.openDialog == "addGames"}
+          />
           <div onClose={() => this.onDialogClose} open={this.state.openDialog == "addGames"} />
         </div>
       </div>
     );
-  }
-
-  renderUserList() {
-    return (
-      <Paper className="edit-userList">
-        <div>Users</div>
-        <List>
-          {this.props.gameMappings.userList.map(userName => (
-            <ListItem>
-              <ListItemText>{userName}</ListItemText>
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete" onClick={() => this.props.removeUser(userName)}>
-                  <Delete />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    );
-  }
-
-  renderAddNewGame() {
-    return <Paper className="edit-gameList" />;
   }
 }
