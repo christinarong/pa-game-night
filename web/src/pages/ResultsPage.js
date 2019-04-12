@@ -1,20 +1,28 @@
 import React from "react";
+import _ from 'lodash';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { List, ListItem, ListItemText } from "@material-ui/core";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 import { IconButton, Paper, Typography } from "@material-ui/core";
 import { Edit, Delete } from "@material-ui/icons";
+import { ArrowUpward, ArrowDownward } from '@material-ui/icons';
 
 export default class ResultsPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentlyEditingRow: undefined };
+    this.state = {
+      currentlyEditingRow: undefined,
+      sortByRowId: undefined,
+      sortAscending: true
+    };
   }
 
-  generateRows(props) {
+  generateRows() {
     let rows = [];
-    this.props.gameMappings.gameList.forEach((gameInfo, gameKey) => {
+    let gameList = _.sortBy(this.props.gameMappings.gameList, [this.state.sortByRowId]);
+    if (!this.state.sortAscending) gameList = _.reverse(gameList);
+    gameList.forEach((gameInfo, gameKey) => {
       const playersList = gameInfo.interestedPlayers.map(player => player.userName + " (" + player.gameRanking + ")").join(', ') || "";
       rows.push({
         id: gameKey,
@@ -61,6 +69,18 @@ export default class ResultsPage extends React.Component {
     this.setState({ currentlyEditingRow: rowId });
   }
 
+  setSortRowInfo(rowId) {
+    if (rowId === this.state.sortByRowId) this.setState({ sortAscending: !this.state.sortAscending });
+    else this.setState({ sortByRowId: rowId, sortAscending: true });
+  }
+
+  renderSortIcon(rowId) {
+    if (this.state.sortByRowId === rowId) {
+      if (this.state.sortAscending) return <ArrowUpward style={{"font-size": "12px"}}/>;
+      else return <ArrowDownward style={{"font-size": "12px"}}/>;
+    }
+  }
+
   render() {
     const rowsToDisplay = this.generateRows();
     return (
@@ -69,9 +89,9 @@ export default class ResultsPage extends React.Component {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Game</TableCell>
-                <TableCell>Players Allotted</TableCell>
-                <TableCell># of People Interested</TableCell>
+                <TableCell onClick={() => this.setSortRowInfo('name')}>Game {this.renderSortIcon('name')}</TableCell>
+                <TableCell onClick={() => this.setSortRowInfo('numPlayers')}>Players Allotted {this.renderSortIcon('numPlayers')}</TableCell>
+                <TableCell onClick={() => this.setSortRowInfo('interestedPlayers.length')}># of People Interested {this.renderSortIcon('interestedPlayers.length')}</TableCell>
                 <TableCell>List of People Interested (with ranking #)</TableCell>
                 {this.props.loginAsOrganizer ? <TableCell>EDIT</TableCell> : null }
               </TableRow>
@@ -80,9 +100,9 @@ export default class ResultsPage extends React.Component {
               {rowsToDisplay.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    {row.gameName || 'N/A'}
+                    {row.gameName || ''}
                   </TableCell>
-                  <TableCell>{row.playersAllowed || 'N/A'}</TableCell>
+                  <TableCell>{row.playersAllowed || ''}</TableCell>
                   <TableCell>{row.numInterested || 0}</TableCell>
                   <TableCell>{row.namesInterested || ''}</TableCell>
                   {this.props.loginAsOrganizer ? (
