@@ -14,7 +14,7 @@ export default class ParticipantApp extends React.Component {
       userName: null,
       userSelections: new Map()
     };
-    this.steps = ['Login', 'Browse Games', 'Submit'];
+    this.steps = ['Register', 'Select Games', 'Results'];
 
     for (let func in ParticipantAppService) this[func] = ParticipantAppService[func].bind(this);
   }
@@ -65,7 +65,7 @@ export default class ParticipantApp extends React.Component {
         this.submitInfo();
         this.goToNextStep();
       }
-      else this.setState({ errorMessage: 'Users must select between one and three games, numbering their preferences sequentially.'});
+      else this.setState({ errorMessage: 'Users must select between one and three games, numbering their preferences sequentially starting from one.'});
     };
     
     const resetFields = () => this.setState({ userName: null, userSelections: new Map() });
@@ -98,7 +98,7 @@ export default class ParticipantApp extends React.Component {
           deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)}
         />
         <Button className="button" variant="contained" color="primary" onClick={this.restartApp}>
-          RESTART
+          REGISTER NEW PARTICIPANT
         </Button>
       </div>
     )

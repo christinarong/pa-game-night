@@ -73,7 +73,7 @@ export default class App extends React.Component {
             />
         }
         <Button color="primary" onClick={() => this.setState({ loginAsOrganizer: !this.state.loginAsOrganizer })}>
-          {this.state.loginAsOrganizer ? "LOGIN AS PARTICIPANT" : "LOGIN AS ORGANIZER"}
+          {this.state.loginAsOrganizer ? "REGISTER AS NEW PARTICIPANT" : "ORGANIZER VIEW"}
         </Button>
       </div>
     );
