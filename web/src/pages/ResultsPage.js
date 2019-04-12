@@ -15,7 +15,7 @@ export default class ResultsPage extends React.Component {
   generateRows(props) {
     let rows = [];
     this.props.gameMappings.gameList.forEach((gameInfo, gameKey) => {
-      const playersList = gameInfo.interestedPlayers.join(", ") || '';
+      const playersList = gameInfo.interestedPlayers.map(player => player.userName + " (" + player.gameRanking + ")").join(', ') || "";
       rows.push({
         id: gameKey,
         gameName: gameInfo.name,

@@ -25,8 +25,9 @@ export default class App extends React.Component {
   }
 
   async updateGameMappings(userSelections, userName) {
-    userSelections.forEach(gameIndex => {
-      this.state.gameMappings.gameList[gameIndex].interestedPlayers.push(userName);
+    userSelections.forEach((gameRanking, gameIndex) => {
+      console.log("updateGameMappings", gameIndex, userName, gameRanking)
+      this.state.gameMappings.gameList[gameIndex].interestedPlayers.push({userName, gameRanking});
     });
     this.state.gameMappings.userList.push(userName);
     this.setState({ gameMappings: this.state.gameMappings });
@@ -54,7 +55,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log("gameMappings", this.state.gameMappings);
     return (
       <div className="app-container">
         <div className="app-header">
