@@ -20,12 +20,16 @@ export default class ResultsPage extends React.Component {
 
   generateRows() {
     let rows = [];
-    let gameList = _.sortBy(this.props.gameMappings.gameList, [this.state.sortByRowId]);
+    let gameList = this.props.gameMappings.gameList.map((game, index) => {
+      game.key = index;
+      return game;
+    });
+    gameList = _.sortBy(gameList, [this.state.sortByRowId]);
     if (!this.state.sortAscending) gameList = _.reverse(gameList);
-    gameList.forEach((gameInfo, gameKey) => {
+    gameList.forEach(gameInfo => {
       const playersList = gameInfo.interestedPlayers.map(player => player.userName + " (" + player.gameRanking + ")").join(', ') || "";
       rows.push({
-        id: gameKey,
+        id: gameInfo.key,
         gameName: gameInfo.name,
         playersAllowed: gameInfo.numPlayers,
         numInterested: gameInfo.interestedPlayers.length,
@@ -76,8 +80,8 @@ export default class ResultsPage extends React.Component {
 
   renderSortIcon(rowId) {
     if (this.state.sortByRowId === rowId) {
-      if (this.state.sortAscending) return <ArrowUpward style={{"font-size": "12px"}}/>;
-      else return <ArrowDownward style={{"font-size": "12px"}}/>;
+      if (this.state.sortAscending) return <ArrowUpward style={{"fontSize": "12px"}}/>;
+      else return <ArrowDownward style={{"fontSize": "12px"}}/>;
     }
   }
 

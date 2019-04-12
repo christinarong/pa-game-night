@@ -144,6 +144,17 @@
       "description": "Split into two teams. Each team sends up one person at a time to get their team to guess a particular word on a card. However, certain words are banned and cannot be used to describe it!"
     },
     {
+      "name": "Sushi Go!",
+      "year": "2013",
+      "boxArtFile": "sushi_go.jpg",
+      "estimatedTime": "15 minutes",
+      "numPlayers": "2-5 (best 4)",
+      "rulesComplexity": "Simple",
+      "type": "Custom Card Game",
+      "bggRank": "378",
+      "description": "Draw pieces of sushi (cards) and try to make complete rolls or sashimi. Pass on what you don't want, but be careful not to help your foes! Dip your nigiri in wasabi to triple its value!"
+    },
+    {
       "name": "Table tennis (ping-pong)",
       "year": "1860",
       "boxArtFile": "table_tennis.jpg",
