@@ -13,8 +13,8 @@ export default class ResultsPage extends React.Component {
 
     this.state = {
       currentlyEditingRow: undefined,
-      sortByRowId: undefined,
-      sortAscending: true
+      sortByRowId: 'interestedPlayers.length',
+      sortAscending: false
     };
   }
 
