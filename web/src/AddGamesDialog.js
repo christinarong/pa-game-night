@@ -16,13 +16,18 @@ export default class AddGamesDialog extends React.Component {
         bggRank: '',
         boxArtFile: '',
         interestedPlayers: []
-      }
+      },
+      errorMessage: null
     }
   };
 
   submitFormInput() {
-    this.props.onAddGame(this.state.formInput);
-    this.props.onClose();
+    if (this.state.formInput.name && this.state.formInput.name.trim() !== '') {
+      this.props.onAddGame(this.state.formInput);
+      this.props.onClose();
+    } else {
+      this.setState({ errorMessage: 'Game name is required!'})
+    }
   }
 
   render() {
@@ -33,6 +38,7 @@ export default class AddGamesDialog extends React.Component {
           <TextField required className="input-field" margin="normal" variant="outlined"
             label="Name"
             value={this.state.formInput.name}
+            error={this.state.errorMessage}
             onChange={event => {
               this.state.formInput.name = event.target.value;
               this.setState({ formInput: this.state.formInput });
@@ -94,6 +100,7 @@ export default class AddGamesDialog extends React.Component {
               this.setState({ formInput: this.state.formInput });
             }}
           />
+          <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
           <Button className="button" variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
             ADD GAME
           </Button>

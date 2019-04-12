@@ -26,20 +26,33 @@ export default class OrganizerApp extends React.Component {
         <div className="edit-controls">
           <Button className="button" variant="outlined" color="secondary" onClick={() => this.setState({ openDialog: "editUsers" })}>Edit Users</Button>
           <Button className="button" variant="outlined" color="secondary" onClick={() => this.setState({ openDialog: "addGames" })}>Add Games</Button>
-          <EditUsersDialog
-            onClose={() => this.onDialogClose()}
-            open={this.state.openDialog == "editUsers"}
-            onRemoveUser={userName => this.props.removeUser(userName)}
-            userList={this.props.gameMappings.userList}
-          />
-          <AddGamesDialog
-            onClose={() => this.onDialogClose()}
-            open={this.state.openDialog == "addGames"}
-            onAddGame={this.props.addGame}
-          />
-          {/* <div onClose={() => this.onDialogClose} open={this.state.openDialog == "addGames"} /> */}
+          {this.renderDialog(this.state.openDialog)}
         </div>
       </div>
     );
+  }
+
+  renderDialog(openDialog) {
+    switch(openDialog) {
+      case 'editUsers':
+        return (
+          <EditUsersDialog
+            onClose={() => this.onDialogClose()}
+            open={true}
+            onRemoveUser={userName => this.props.removeUser(userName)}
+            userList={this.props.gameMappings.userList}
+          />
+        );
+      case 'addGames':
+        return (
+          <AddGamesDialog
+            onClose={() => this.onDialogClose()}
+            open={true}
+            onAddGame={this.props.addGame}
+          />
+        );
+      case undefined:
+        return null;
+    }
   }
 }

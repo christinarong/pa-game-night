@@ -28,7 +28,6 @@ export default class ResultsPage extends React.Component {
   }
 
   renderRowDialog(row) {
-    console.log(this.props.gameMappings.gameList[1].interestedPlayers.length)
     return (
       <Dialog
         fullWidth={true}
@@ -81,11 +80,11 @@ export default class ResultsPage extends React.Component {
               {rowsToDisplay.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    {row.gameName}
+                    {row.gameName || 'N/A'}
                   </TableCell>
-                  <TableCell>{row.playersAllowed}</TableCell>
-                  <TableCell>{row.numInterested}</TableCell>
-                  <TableCell>{row.namesInterested}</TableCell>
+                  <TableCell>{row.playersAllowed || 'N/A'}</TableCell>
+                  <TableCell>{row.numInterested || 0}</TableCell>
+                  <TableCell>{row.namesInterested || ''}</TableCell>
                   {this.props.loginAsOrganizer ? (
                     <TableCell width={100}>
                       <IconButton aria-label="Edit" onClick={() => this.onEditButtonClicked(row.id)}>
