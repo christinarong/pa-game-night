@@ -72,7 +72,7 @@ export default class App extends React.Component {
               deleteUserFromGame={this.deleteUserFromGame.bind(this)}
             />
         }
-        <Button color="primary" onClick={() => this.setState({ loginAsOrganizer: !this.state.loginAsOrganizer })}>
+        <Button className="button" color="primary" onClick={() => this.setState({ loginAsOrganizer: !this.state.loginAsOrganizer })}>
           {this.state.loginAsOrganizer ? "REGISTER AS NEW PARTICIPANT" : "ORGANIZER VIEW"}
         </Button>
       </div>

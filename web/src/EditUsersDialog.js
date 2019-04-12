@@ -5,7 +5,7 @@ import { Delete } from "@material-ui/icons";
 function EditUsersDialog(props) {
   return (
     <Dialog fullWidth={true} maxWidth={"sm"} open={props.open} onClose={props.onClose}>
-      <DialogTitle>Edit Users</DialogTitle>
+      <DialogTitle>Edit user list:</DialogTitle>
       <DialogContent>
         {props.userList.length > 0
           ? <List dense={true}>

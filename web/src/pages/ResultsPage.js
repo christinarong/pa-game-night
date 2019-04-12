@@ -31,11 +31,12 @@ export default class ResultsPage extends React.Component {
     console.log(this.props.gameMappings.gameList[1].interestedPlayers.length)
     return (
       <Dialog
-        className="dialog"
+        fullWidth={true}
+        maxWidth={"sm"}
         open={this.state.currentlyEditingRow == row.id}
         onClose={() => this.setState({ currentlyEditingRow: undefined })}
       >
-        <DialogTitle>Edit Interested Players For {row.gameName}</DialogTitle>
+        <DialogTitle>Edit player list: <strong>{row.gameName}</strong></DialogTitle>
         <DialogContent>
           {this.props.gameMappings.gameList[row.id].interestedPlayers.length > 0
             ? <List dense={true}>

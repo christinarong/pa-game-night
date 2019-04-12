@@ -24,8 +24,8 @@ export default class OrganizerApp extends React.Component {
           deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)}
         />
         <div className="edit-controls">
-          <Button onClick={() => this.setState({ openDialog: "editUsers" })}>Edit Users</Button>
-          <Button onClick={() => this.setState({ openDialog: "addGames" })}>Add Games</Button>
+          <Button className="button" variant="outlined" color="secondary" onClick={() => this.setState({ openDialog: "editUsers" })}>Edit Users</Button>
+          <Button className="button" variant="outlined" color="secondary" onClick={() => this.setState({ openDialog: "addGames" })}>Add Games</Button>
           <EditUsersDialog
             onClose={() => this.onDialogClose()}
             open={this.state.openDialog == "editUsers"}
@@ -37,7 +37,7 @@ export default class OrganizerApp extends React.Component {
             open={this.state.openDialog == "addGames"}
             onAddGame={this.props.addGame}
           />
-          <div onClose={() => this.onDialogClose} open={this.state.openDialog == "addGames"} />
+          {/* <div onClose={() => this.onDialogClose} open={this.state.openDialog == "addGames"} /> */}
         </div>
       </div>
     );

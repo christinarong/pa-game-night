@@ -28,7 +28,7 @@ export default class AddGamesDialog extends React.Component {
   render() {
     return (
       <Dialog className="dialog" fullWidth={true} maxWidth={"sm"} open={this.props.open} onClose={this.props.onClose}>
-        <DialogTitle>Add Game</DialogTitle>
+        <DialogTitle>Add game to collection:</DialogTitle>
         <DialogContent className="edit-gameList">
           <TextField required className="input-field" margin="normal" variant="outlined"
             label="Name"
@@ -94,7 +94,7 @@ export default class AddGamesDialog extends React.Component {
               this.setState({ formInput: this.state.formInput });
             }}
           />
-          <Button className="add-game-button" variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
+          <Button className="button" variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
             ADD GAME
           </Button>
         </DialogContent>
