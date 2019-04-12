@@ -36,8 +36,9 @@ export default class ParticipantApp extends React.Component {
 
   renderLoginPage() {
     const checkUserName = () => {
-      if (this.state.userName && this.state.userName !== '') this.goToNextStep();
-      else this.setState({ errorMessage: 'Name is required!'});
+      if (!this.state.userName || this.state.userName === '') this.setState({ errorMessage: 'Name is required!'});
+      else if (this.props.gameMappings.userList.includes(this.state.userName)) this.setState({ errorMessage: 'A user with that name already exists! Consider adding a middle name or numbers to make it unique.'});
+      else this.goToNextStep();
     };
     
     return (
@@ -64,7 +65,7 @@ export default class ParticipantApp extends React.Component {
         this.submitInfo();
         this.goToNextStep();
       }
-      else this.setState({ errorMessage: 'Must select at least one game and rankings must start from 1.'});
+      else this.setState({ errorMessage: 'Users must select between one and three games, numbering their preferences sequentially.'});
     };
     
     const resetFields = () => this.setState({ userName: null, userSelections: new Map() });
