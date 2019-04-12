@@ -29,7 +29,7 @@ export default class OrganizerApp extends React.Component {
           <EditUsersDialog
             onClose={() => this.onDialogClose()}
             open={this.state.openDialog == "editUsers"}
-            onDeleteUser={userName => this.props.removeUser(userName)}
+            onRemoveUser={userName => this.props.removeUser(userName)}
             userList={this.props.gameMappings.userList}
           />
           <AddGamesDialog

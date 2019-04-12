@@ -26,7 +26,6 @@ export default class App extends React.Component {
 
   async updateGameMappings(userSelections, userName) {
     userSelections.forEach((gameRanking, gameIndex) => {
-      console.log("updateGameMappings", gameIndex, userName, gameRanking)
       this.state.gameMappings.gameList[gameIndex].interestedPlayers.push({userName, gameRanking});
     });
     this.state.gameMappings.userList.push(userName);
@@ -36,15 +35,15 @@ export default class App extends React.Component {
 
   async removeUser(userName) {
     this.state.gameMappings.gameList.forEach(game => {
-      _.pull(game.interestedPlayers, userName);
+      game.interestedPlayers = _.filter(game.interestedPlayers, user => user.userName !== userName);
     });
     _.pull(this.state.gameMappings.userList, userName);
     this.setState({ gameMappings: this.state.gameMappings });
     await axios.post("/games", { mappings: this.state.gameMappings });
   }
 
-  async deleteUserFromGame(userName, gameIndex) {
-    _.pull(this.state.gameMappings.gameList[gameIndex].interestedPlayers, userName);
+  async deleteUserFromGame(playerIndex, gameIndex) {
+    _.pullAt(this.state.gameMappings.gameList[gameIndex].interestedPlayers, playerIndex);
     this.setState({ gameMappings: this.state.gameMappings });
     await axios.post("/games", { mappings: this.state.gameMappings });
   }

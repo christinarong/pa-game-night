@@ -28,21 +28,22 @@ export default class ResultsPage extends React.Component {
   }
 
   renderRowDialog(row) {
+    console.log(this.props.gameMappings.gameList[1].interestedPlayers.length)
     return (
       <Dialog
         className="dialog"
         open={this.state.currentlyEditingRow == row.id}
         onClose={() => this.setState({ currentlyEditingRow: undefined })}
       >
-        <DialogTitle>Edit Users For {row.gameName}</DialogTitle>
+        <DialogTitle>Edit Interested Players For {row.gameName}</DialogTitle>
         <DialogContent>
-          {this.props.gameMappings.gameList[row.id].interestedPlayers > 0
-            ? <List>
-                {this.props.gameMappings.gameList[row.id].interestedPlayers.map(userName => {
+          {this.props.gameMappings.gameList[row.id].interestedPlayers.length > 0
+            ? <List dense={true}>
+                {this.props.gameMappings.gameList[row.id].interestedPlayers.map((user, playerIndex) => {
                   return (
                     <ListItem>
-                      <ListItemText>{userName}</ListItemText>
-                      <IconButton aria-label="Delete" onClick={() => this.props.deleteUserFromGame(userName, row.id)}>
+                      <ListItemText>{user.userName}</ListItemText>
+                      <IconButton aria-label="Delete" onClick={() => this.props.deleteUserFromGame(playerIndex, row.id)}>
                         <Delete />
                       </IconButton>
                     </ListItem>
