@@ -122,7 +122,7 @@ export default class ParticipantApp extends React.Component {
         <Button
           className="button"
           variant="contained"
-          color="primary"
+          color="inherit"
           disabled={this.state.activeStep === 0 || this.state.activeStep === this.steps.length - 1}
           onClick={checkAndMoveBackward}
         >
