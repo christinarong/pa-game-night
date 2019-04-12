@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Dialog, DialogContent, DialogTitle, TextField } from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle, TextField, Typography } from "@material-ui/core";
 
 export default class AddGamesDialog extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class AddGamesDialog extends React.Component {
           <TextField required className="input-field" margin="normal" variant="outlined"
             label="Name"
             value={this.state.formInput.name}
-            error={this.state.errorMessage}
+            error={this.state.errorMessage !== null}
             onChange={event => {
               this.state.formInput.name = event.target.value;
               this.setState({ formInput: this.state.formInput });
@@ -100,6 +100,7 @@ export default class AddGamesDialog extends React.Component {
               this.setState({ formInput: this.state.formInput });
             }}
           />
+          <Typography>Note: uploading images not currently supported.</Typography>
           <p style={{color: 'red'}}>{this.state.errorMessage ? `Error: ${this.state.errorMessage}` : null}</p>
           <Button className="button" variant="contained" color="primary" onClick={this.submitFormInput.bind(this)}>
             ADD GAME

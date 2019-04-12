@@ -41,7 +41,7 @@ export default class ResultsPage extends React.Component {
             ? <List dense={true}>
                 {this.props.gameMappings.gameList[row.id].interestedPlayers.map((user, playerIndex) => {
                   return (
-                    <ListItem>
+                    <ListItem key={playerIndex}>
                       <ListItemText>{user.userName}</ListItemText>
                       <IconButton aria-label="Delete" onClick={() => this.props.deleteUserFromGame(playerIndex, row.id)}>
                         <Delete />
@@ -68,13 +68,13 @@ export default class ResultsPage extends React.Component {
         <Paper>
           <Table>
             <TableHead>
-              <TableCell>Game</TableCell>
-              <TableCell>Players Allotted</TableCell>
-              <TableCell># of People Interested</TableCell>
-              <TableCell>List of People Interested</TableCell>
-              {this.props.loginAsOrganizer ? (
-                <TableCell>EDIT</TableCell>
-              ) : null }
+              <TableRow>
+                <TableCell>Game</TableCell>
+                <TableCell>Players Allotted</TableCell>
+                <TableCell># of People Interested</TableCell>
+                <TableCell>List of People Interested (with ranking #)</TableCell>
+                {this.props.loginAsOrganizer ? <TableCell>EDIT</TableCell> : null }
+              </TableRow>
             </TableHead>
             <TableBody>
               {rowsToDisplay.map(row => (

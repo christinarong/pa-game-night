@@ -9,8 +9,8 @@ function EditUsersDialog(props) {
       <DialogContent>
         {props.userList.length > 0
           ? <List dense={true}>
-              {props.userList.map(userName => (
-                <ListItem>
+              {props.userList.map((userName, index) => (
+                <ListItem key={index}>
                   <ListItemText>{userName}</ListItemText>
                   <IconButton aria-label="Delete" onClick={() => props.onRemoveUser(userName)}>
                     <Delete />

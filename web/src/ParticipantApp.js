@@ -36,8 +36,8 @@ export default class ParticipantApp extends React.Component {
 
   renderLoginPage() {
     const checkUserName = () => {
-      if (!this.state.userName || this.state.userName === '') this.setState({ errorMessage: 'Name is required!'});
-      else if (this.props.gameMappings.userList.includes(this.state.userName)) this.setState({ errorMessage: 'A user with that name already exists! Consider adding a middle name or numbers to make it unique.'});
+      if (!this.state.userName || this.state.userName.trim() === '') this.setState({ errorMessage: 'Name is required!'});
+      else if (this.props.gameMappings.userList.includes(this.state.userName)) this.setState({ errorMessage: 'A user with that name already exists! Consider adding extra symbols to make it unique!'});
       else this.goToNextStep();
     };
     
@@ -65,7 +65,7 @@ export default class ParticipantApp extends React.Component {
         this.submitInfo();
         this.goToNextStep();
       }
-      else this.setState({ errorMessage: 'Users must select between one and three games, numbering their preferences sequentially starting from one.'});
+      else this.setState({ errorMessage: 'Users must select one, two, or three games, numbering their preferences sequentially starting from 1.'});
     };
     
     const resetFields = () => this.setState({ userName: null, userSelections: new Map() });
@@ -98,7 +98,7 @@ export default class ParticipantApp extends React.Component {
           deleteUserFromGame={(userName, gameIndex) => this.props.deleteUserFromGame(userName, gameIndex)}
         />
         <Button className="button" variant="contained" color="primary" onClick={this.restartApp}>
-          REGISTER NEW PARTICIPANT
+          RESTART AS NEW PARTICIPANT
         </Button>
       </div>
     )

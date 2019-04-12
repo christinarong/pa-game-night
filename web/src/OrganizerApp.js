@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import ResultsPage from "./pages/ResultsPage";
 import AddGamesDialog from './AddGamesDialog';
 import { EditUsersDialog } from "./EditUsersDialog";
@@ -18,6 +18,7 @@ export default class OrganizerApp extends React.Component {
   render() {
     return (
       <div className="organizer-content">
+        <Typography># of participants: {this.props.gameMappings.userList.length}</Typography>
         <ResultsPage
           gameMappings={this.props.gameMappings}
           loginAsOrganizer={true}
